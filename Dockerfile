@@ -1,5 +1,8 @@
 # pull official base image
-FROM node:latest as builder
+# FROM node:latest as builder
+
+FROM public.ecr.aws/docker/library/node:latest
+
 # set working directory
 WORKDIR /app
 # install app dependencies
@@ -17,7 +20,9 @@ RUN npm run build
 #######################################
 
 #pull the official nginx:1.19.0 base image
-FROM nginx:1.19.0
+# FROM nginx:1.19.0
+FROM public.ecr.aws/nginx/nginx:1.18
+
 #copies React to the container directory
 # Set working directory to nginx resources directory
 WORKDIR /usr/share/nginx/html
